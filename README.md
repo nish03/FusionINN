@@ -1,7 +1,7 @@
 # FusionINN: Invertible Image Fusion for Brain Tumor Monitoring
 This repository provides the source code for the [paper](https://arxiv.org/abs/2403.15769) titled **FusionINN: Invertible Image Fusion for Brain Tumor Monitoring**. 
 
-![GitHub Logo](/Flow-Feature-Synthesis/assets/Method.png)
+![GitHub Logo](/FusionINN/assets/Method.png)
 
 **The key contributions of the paper are as follows:**
 * Introduces first-of-its-kind image fusion framework that harnesses invertible normalizing flow for bidirectional training. 
