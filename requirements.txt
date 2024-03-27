@@ -1,0 +1,31 @@
+# Usage: pip install -r requirements.txt
+
+# Base ------------------------------------------------------------------------
+numpy>=1.24.2
+pandas>=1.5.3
+Pillow>=9.4.0
+opencv-python>=4.7.0
+seaborn>=0.12.0
+h5py
+pytorch-msssim
+matplotlib
+
+# Utils -----------------------------------------------------------------------
+scipy>=1.10.1
+tqdm>=4.65.0
+pyyaml>=5.1
+scikit-image>=0.20.0
+scikit-learn>=1.2.2
+scikit-optimize>=0.9.0
+sklearn
+
+# Flows -----------------------------------------------------------------------
+FrEIA==0.2
+Wand==0.6.11
+timm==0.6.13
+gdown==4.7.1
+
+
+# Torch ---------------------------------------------------------------------
+torch==1.9.0+cu111 --find-links https://download.pytorch.org/whl/cu111/torch_stable.html
+torchvision==0.10.0
