@@ -43,13 +43,9 @@ If you find this code or paper useful in your research, please consider citing o
 ```
 pip install -r requirements.txt
 ```
-Additionally, you need to install [Detectron2](https://detectron2.readthedocs.io/en/latest/tutorials/install.html) and [FrEIA](https://github.com/vislearn/FrEIA).
 
-### Datasets
-Please follow the repositories of the [VOS](https://github.com/deeplearning-wisc/vos) and [STUD](https://github.com/deeplearning-wisc/stud) papers to obtain and prepare both publicly available inlier datasets as well as the pre-processed outlier datasets.
-
-**Note:** After you have prepared the datasets and placed in your dataset directory, you need to specify the correct dataset folder path in the ```/path/to/Flow-Feature-Synthesis/detection/core/datasets/setup_datasets.py``` by changing the ```/path/to/``` to the correct path wherever required. 
-
+### Dataset
+We provide a pre-processed training and test dataset using the Brats 2018 data available at this website. We 
 
 # Training FFS from scratch
 **Step 1:** First and foremost, make sure you are inside the project folder by running
