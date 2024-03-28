@@ -32,10 +32,10 @@ for i in range(total_val_images):
     plt.clf()
     plt.imsave('/home/h1/s8993054/INN_Fusion/INN/Recon_Flair_normalized/Recon_Flair_' + str(i) + '.png', recon_images[i,1,], cmap = 'gray', vmin = 0.0, vmax = 1.0)
     plt.close()
-    #plt.imsave('/home/h1/s8993054/INN_Fusion/INN/T1ce/T1ce_' + str(i) + '.png', input_images[i,2,], cmap = 'gray')
-    #plt.clf()
-    #plt.imsave('/home/h1/s8993054/INN_Fusion/INN/Flair/Flair_' + str(i) + '.png', input_images[i,3,], cmap = 'gray')
-    #plt.close()
+    plt.imsave('/home/h1/s8993054/INN_Fusion/INN/T1ce/T1ce_' + str(i) + '.png', input_images[i,2,], cmap = 'gray')
+    plt.clf()
+    plt.imsave('/home/h1/s8993054/INN_Fusion/INN/Flair/Flair_' + str(i) + '.png', input_images[i,3,], cmap = 'gray')
+    plt.close()
     
        
 ############################################Plot the Loss curves#######################################################

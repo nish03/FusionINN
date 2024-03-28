@@ -39,178 +39,113 @@ If you find this code or paper useful in your research, please consider citing o
 
 # Installation
 
-### Package Requirements
+## Package Requirements
 ```
 pip install -r requirements.txt
 ```
 
-### Dataset
-We provide a pre-processed training and test dataset using the Brats 2018 data available at this website. We 
+## Datasets
+We provide a processed version of the [BraTS 2018 data](https://www.med.upenn.edu/sbia/brats2018/data.html) used to train the FusionINN framework and other evaluated fusion models. The processed data only contain those images from the BraTS 2018 dataset where the clinical annotations shows the presence of the necrotic core, non-enhancing tumor and peritumoral edema. 
+The processed data consists of roughly 10000 image pairs, which we shuffled and partitioned it into training and test sets. The processed data can be downloaded from [link for test set](https://datashare.tu-dresden.de/s/8ZRbWJNMQnftDRy) and [link for training set](. 
 
-# Training FFS from scratch
-**Step 1:** First and foremost, make sure you are inside the project folder by running
+**Note:** Please be aware that if you use this data for your own research, you need to cite the original manuscripts as stated at the [BraTS 2018 page](https://www.med.upenn.edu/sbia/brats2018/data.html).
+
+# Training FusionINN framework
+**Step 1:** First and foremost, downloaed the FusionINN project repository and make sure you are inside the project folder by running
 ```
-cd /path/to/Flow-Feature-Synthesis/detection 
+cd /path/to/FusionINN-main/FusionINN 
 ```
-**Step 2:** You could download the pre-trained RegNetX-4.0GF backbone from [here](https://drive.google.com/file/d/1WyE_OIpzV_0E_Y3KF4UVxIZJTSqB7cPO/view?usp=sharing) and place it in ```/path/to/Flow-Feature-Synthesis/detection/configs/regnetx_detectron2.pth```. You could already find this file at the given location in this repository. 
 
+**Step 2:** Make sure you change the folder path where the dataset is placed in ```inn_train.py```, before you start the training process. Also, ensure that you have allocated atleast 1 GPU for the training. Then, run the following command:
 
-**Step 3:** You need to change the folder path where the dataset is placed in each of the below commands before you start the training process. 
-
-**For training FFS with PASCAL-VOC as the inlier image dataset**
 ```
-python train_net_gmm.py  --dataset-dir /path/to/dataset/VOC/  --num-gpus 4 --config-file VOC-Detection/faster-rcnn/regnetx.yaml  --random-seed 0 --resume True  
+python inn_train.py  
 ```
-The trained model will be saved at ```/path/to/Flow-Feature-Synthesis/detection/data/VOC-Detection/faster-rcnn/regnetx/random_seed_0/model_final.pth```.
+The trained model will be saved at ```/path/to/FusionINN-main/FusionINN/inn.pt```.
 
-**For training FFS with BDD100K as the inlier video dataset**
+# Training other Fusion Models
+**Step 1:** Make sure you are inside the correct project folder. For example: the path for the DeepFuse model will be as follows:
 ```
-python train_net_gmm.py  --dataset-dir /path/to/dataset/BDD100k_video/bdd100k/  --num-gpus 4 --config-file BDD100K/FFS_regnet.yaml  --random-seed 0 --resume True  
+cd /path/to/FusionINN-main/FusionModels/DeepFuse 
 ```
-The trained model will be saved at ```/path/to/Flow-Feature-Synthesis/detection/data/configs/BDD100k/FFS_regnet/random_seed_0/model_final.pth```.
 
-**For training FFS with Youtube-VIS as the inlier video dataset**
+**Step 2:** Make sure you change the folder path where the dataset is placed in ```deepfuse_train.py```, before you start the training process. Also, ensure that you have allocated atleast 1 GPU for the training. Then, run the following command:
+
 ```
-python train_net_gmm.py  --dataset-dir /path/to/dataset/Youtube-VIS/  --num-gpus 4 --config-file VIS/FFS_regnet.yaml  --random-seed 0 --resume True  
-``` 
-The trained model will be saved at ```/path/to/Flow-Feature-Synthesis/detection/data/configs/VIS/FFS_regnet/random_seed_0/model_final.pth```
+python deepfuse_train.py  
+```
+The trained model will be saved at ```/path/to/FusionINN-main/FusionModels/DeepFuse/deepfuse.pt```. Please follow the same proedure for other fusion models.
 
-# [Optional] Training FFS with SGLD
-You can also train our FFS model with the Stochastic Gradient based Langevin Dynamics approach as proposed in the paper. All you need to do is change the line 18 in ```/path/to/Flow-Feature-Synthesis/detection/modeling/plain_generalized_rcnn_logistic_gmm.py``` from ```from modeling.flow_generator import build_roi_heads``` to ```from modeling.flow_generator_sgld import build_roi_heads```. 
 
-# Using Pre-trained FFS Models
-If you would like to directly use the pre-trained FFS models instead of training a new instance of the FFS, please follow the below steps:
+# Using Pre-trained FusionINN Model
+If you would like to directly use the pre-trained FusionINN model instead of training a new instance of the FusionINN, please follow the below steps:
 
-**Step 1:** You need to download the pre-trained FFS models for PASCAL-VOC, BDD100K Video and Youtube VIS datasets from [here](https://drive.google.com/drive/folders/1QGUn75onqWh6GUrmiPTCGP9o94PMHMeL?usp=share_link). Each of these models are trained with RegNetX as the backbone architecture. 
+**Step 1:** You need to download the pre-trained FusionINN model from [here](https://datashare.tu-dresden.de/s/xQPDgiLRQkeT6eJ). 
 
-**Step 2:** Place ```model_final.pth``` in the exact same folder where the trained models gets saved for the training procedure. Example: For the pre-trained model of PASCAL-VOC, you need to place the model at ```/path/to/Flow-Feature-Synthesis/detection/data/VOC-Detection/faster-rcnn/regnetx/random_seed_0/model_final.pth```. 
+**Step 2:** Place ```inn.pt``` in the exact same folder where the trained model gets saved for the training procedure i.e. ```/path/to/FusionINN-main/FusionINN/```. 
 
-**Note:** The path needs to be created if you directly use the pre-trained models instead of first performing the training from scratch. Additionally, If you are using the weights from the pre-trained model, then please define the correct path for WEIGHTS in the config file as ```/path/to/Flow-Feature-Synthesis/detection/data/VOC-Detection/faster-rcnn/regnetx/random_seed_0/model_final.pth```. If you do not perform this step, there may be a situation where detectron2 framework still uses initial weights from ```/path/to/Flow-Feature-Synthesis/detection/configs/regnetx_detectron2.pth``` and you may not get the desired results.
+
+# Using Pre-trained DDFM Model
+Please note that you need to directly use a pre-trained Diffusion model to run DDFM approach as this method is not adaptable for training from scratch. Hence, to test DDFM approach, please follow the below steps:
+
+**Step 1:** You need to download the pre-trained model named ```256x256_diffusion_uncond.pt``` from [here](https://github.com/openai/guided-diffusion) and place it in ```/path/to/FusionINN-main/FusionModels/DDFM/output/``` folder. 
+
+**Step 2:** Run the follwoing command:
+
+```
+cd /path/to/FusionINN-main/FusionModels/DDFM/
+python sample_brats.py
+```
+
+The above steps will save the fused images obtained from DDFM model in the following path ```/path/to/FusionINN-main/FusionModels/DDFM/output/recon/```. 
+
 
 # Inference procedure
-**Note:**  The inference procedure is common irrespective of whether you use pre-trained models or trained the models following the training procedure mentioned before. 
-
-**Evaluation with the FFS trained on PASCAL-VOC as the inlier dataset**
-
-**Step 1:** First, the evaluation needs to be performed on the validation set of PASCAL-VOC as follows:
+Make sure the paths are correct in the file ```inn_test.py```. The inference procedure is common irrespective of whether you use pre-trained models or trained the models following the procedure mentioned before. For the FusionINN model as an example, run the follwoing command:
 
 ```
-python apply_net.py  --dataset-dir /path/to/dataset/VOC/ --test-dataset voc_custom_val --config-file VOC-Detection/faster-rcnn/regnetx.yaml --inference-config Inference/standard_nms.yaml --random-seed 0 --image-corruption-level 0 --visualize 0
+cd /path/to/FusionINN-main/FusionINN 
+python inn_test.py
 ```
 
-**Step 2:** Then, the evaluation needs to be performed on the validation set of outlier data. 
+The files namely ```val_fused_tensor.pt``` and  ```val_recon_tensor.pt``` will be saved at ```/path/to/FusionINN-main/FusionINN/```.
 
-For MS-COCO:
-```
-python apply_net.py  --dataset-dir /path/to/dataset/COCO/ --test-dataset coco_ood_val --config-file VOC-Detection/faster-rcnn/regnetx.yaml  --inference-config Inference/standard_nms.yaml --random-seed 0 --image-corruption-level 0 --visualize 0
-```
-
-For OpenImages:
-```
-python apply_net.py  --dataset-dir /path/to/dataset/OpenImages/  --test-dataset openimages_ood_val --config-file VOC-Detection/faster-rcnn/regnetx.yaml  --inference-config Inference/standard_nms.yaml --random-seed 0 --image-corruption-level 0 --visualize 0
-```
-
-**Step 3:** Finally, the outlier detection performance based on the evaluation metric such as FPR95 and AUROC can be computed as follows:
-
-For MS-COCO:
-```
-python voc_coco_plot.py --name regnetx --thres xxx --energy 1 --seed 0
-```
-
-**Note:** You can obtain the threshold value by looking at the name of the file ```probabilistic_scoring_res_odd_0.5959.txt``` at ```/path/to/Flow-Feature-Synthesis/detection/data/VOC-Detection/faster-rcnn/regnetx/random_seed_0/inference/voc_custom_val/standard_nms/corruption_level_0/probabilistic_scoring_res_odd_xxxx.txt```.
-For our pre-trained model with PASCAL-VOC dataset, the threshold should be ```0.5959``` and running the above script should result in the exact numbers as reported in our paper. 
- 
-
-For OpenImages:
-```
-python voc_openimage_plot.py --name regnetx --thres xxx --energy 1 --seed 0
-```
+**Note:** Please modify the inference procedure according to the model you want to test. Please note that other models will only produce ```val_fused_tensor.pt``` file since they are not invertible. 
 
 
-**Evaluation with the FFS trained on BDD100K as the inlier video dataset**
+# Visualization of FusionINN results
+To visualize the fusion and decomposition performance of FusionINN, please follow the below steps: 
 
-**Step 1:** First, the evaluation needs to be performed on the validation set of BDD100K (Videos) as follows:
+**Step 1:** Create five new folders two for input images (named ```T1ce``` and ```Flair```), one for fused images (named ```Fused```) and two for decomposed images (named ```Recon_T1ce``` and ```Recon_Flair```) in the folder ```/path/to/FusionINN-main/FusionINN```. 
+
+**Step 2:** Run the following command: 
 
 ```
-python apply_net.py  --dataset-dir /path/to/dataset/BDD100k_video/bdd100k/ --test-dataset bdd_tracking_2k_val --config-file BDD100k/FFS_regnet.yaml --inference-config Inference/standard_nms.yaml --random-seed 0 --image-corruption-level 0 --visualize 0
+cd /path/to/FusionINN-main/FusionINN 
+python inn_vis.py
 ```
 
-**Step 2:** Then, the evaluation needs to be performed on the validation set of outlier data as follows:  
+**Note:** Please modify the visualize procedure according to the model you want to test. Please note that other models will not require folders for decomposed images. 
 
-For MS-COCO:
-```
-python apply_net.py  --dataset-dir /path/to/dataset/COCO/ --test-dataset coco_2017_val_ood_wrt_bdd  --config-file BDD100k/FFS_regnet.yaml  --inference-config Inference/standard_nms.yaml --random-seed 0 --image-corruption-level 0 --visualize 0
-```
+# Computing Quantitative Results
 
-For nuImages:
-```
-python apply_net.py  --dataset-dir /path/to/dataset/nuImages/ --test-dataset nu_bdd_ood  --config-file BDD100k/FFS_regnet.yaml  --inference-config Inference/standard_nms.yaml --random-seed 0 --image-corruption-level 0 --visualize 0
-```
+**Requirement:** Please make sure you have MATLAB installed in your workspace. Please follow the below steps:
 
-
-**Step 3:** Now, compute the outlier detection performance. The threshold could be determined using the same procedure as mentioned before:
-
-For MS-COCO:
-```
-python bdd_coco_plot.py --name regnetx --thres xxx --energy 1 --seed 0
-```
-
-For nuImages:
-```
-python bdd_nuImage_plot.py --name regnetx --thres xxx --energy 1 --seed 0
-```
-
-
-
-**Evaluation with the FFS trained on Youtube-VIS as the inlier video dataset**
-
-**Step 1:** First, the evaluation needs to be performed on the validation set of Youtube-VIS as follows:
+**Step 1:** To compute the SSIM metric scores, run the following command:
 
 ```
-python apply_net.py --dataset-dir /path/to/dataset/Youtube-VIS  --test-dataset vis21_val --config-file VIS/FFS_regnet.yaml --inference-config Inference/standard_nms.yaml --random-seed 0 --image-corruption-level 0 --visualize 0
+cd /path/to/FusionINN-main/ 
+python ssim_test.py
 ```
 
-**Step 2:** Then, the evaluation needs to be performed on the validation set of outlier data as follows:  
+**Step 2:** Enter the MATLAB environment and add all Folders and the Subfolders of FusionINN project folder to search path of your MATLAB ennvironment. Next, running the ```evaluate.m``` file in te path ```/path/to/FusionINN-main/``` will save a file ```Q.mat``` in the same folder path. The ```Q.mat``` file will contain scores obtained from four other fusion metrics for an evaluated fusion model.
 
-For MS-COCO
+**Step 3:** Finally run the following command to obtain mean values of all the five fusion metrics for all the evaluated models:
+
 ```
-python apply_net.py  --dataset-dir /path/to/dataset/COCO/ --test-dataset vis_coco_ood  --config-file VIS/FFS_regnet.yaml  --inference-config Inference/standard_nms.yaml --random-seed 0 --image-corruption-level 0 --visualize 0
+cd /path/to/FusionINN-main/ 
+python mean_test.py
 ```
-
-
-For nuImages
-```
-python apply_net.py  --dataset-dir /path/to/dataset/nuImages/ --test-dataset nu_bdd_ood --config-file VIS/FFS_regnet.yaml  --inference-config Inference/standard_nms.yaml --random-seed 0 --image-corruption-level 0 --visualize 0
-```
-
-
-**Step 3:** Now, compute the outlier detection performance using metric scripts. The threshold could be determined using the same procedure as mentioned before:
-
-For MS-COCO:
-```
-python vis_coco_plot.py --name regnetx --thres xxx --energy 1 --seed 0
-```
-
-For nuImages:
-```
-python vis_nuImage_plot.py --name regnetx --thres xxx --energy 1 --seed 0
-```
-
-
-
-# Visualization of results
-
-To visualize the performance of FFS on the outlier datasets, you need to perform the following procedure:
-
-**Step 1:** Run the evaluation scripts for the inliers, outliers and metrics i.e. Step 1, Step 2 and Step 3 respectively. 
-
-**Step 2:** Note down the threshold score printed based on line 85 in ```metric_utils.py```. For our pre-trained models with inlier datasets as PASCAL-VOC, BDD100K(Video) and Youtube-VIS, the thresholds are 11.95079, 5.7650447 and 5.445534 respectively.
-
-**Step 3:** Change the right hand side of the line 131 in ```inference_core.py``` to the number of inlier classes (e.g. for PASCAL-VOC, it should be 20 since there are 20 inlier classes in this dataset)
-
-**Step 4:** Change the threshold in line 97 of ```apply_net.py``` to the value obtained in Step 2.
-
-**Step 5:** Finally run the evaluation script for the outlier dataset with ```--visualize 1```. 
 
 
 # License
