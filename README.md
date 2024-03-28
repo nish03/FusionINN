@@ -46,7 +46,7 @@ pip install -r requirements.txt
 
 ## Datasets
 We provide a processed version of the [BraTS 2018 data](https://www.med.upenn.edu/sbia/brats2018/data.html) used to train the FusionINN framework and other evaluated fusion models. The processed data only contain those images from the BraTS 2018 dataset where the clinical annotations shows the presence of the necrotic core, non-enhancing tumor and peritumoral edema. 
-The processed data consists of roughly 10000 image pairs, which we shuffled and partitioned it into training and test sets. The processed data can be downloaded from [link for test set](https://datashare.tu-dresden.de/s/8ZRbWJNMQnftDRy) and [link for training set](. 
+The processed data consists of roughly 10000 image pairs, which we shuffled and partitioned it into training and test sets. The processed data can be downloaded from [link for test set](https://datashare.tu-dresden.de/s/8ZRbWJNMQnftDRy) and [link for training set](https://datashare.tu-dresden.de/s/AkbfLN6w5fNrWBG). 
 
 **Note:** Please be aware that if you use this data for your own research, you need to cite the original manuscripts as stated at the [BraTS 2018 page](https://www.med.upenn.edu/sbia/brats2018/data.html).
 
