@@ -1,5 +1,5 @@
 num_val_images = 1153;
-Q = zeros(num_val_images,5);
+Q = zeros(num_val_images,4);
 
 for i = 1:num_val_images
     fused=imread(['INN/Fused/fused_' num2str(i-1) '.png']);

@@ -90,10 +90,7 @@ if __name__ == '__main__':
         
         inf_img = m(inf_img)
         vis_img = m(vis_img)
-        #img_name = str(i)
-        #inf_img = image_read(os.path.join(test_folder,"T1ce","T1ce_" + str(i) + ".png"),mode='GRAY')[np.newaxis,np.newaxis, ...]/255.0 
-        #vis_img = image_read(os.path.join(test_folder,"Flair","Flair_" + str(i) + ".png"), mode='GRAY')[np.newaxis,np.newaxis, ...]/255.0 
-
+        
         inf_img = inf_img*2-1
         vis_img = vis_img*2-1
         
@@ -126,7 +123,5 @@ if __name__ == '__main__':
         sample=(sample-np.min(sample))/(np.max(sample)-np.min(sample))
         sample=((sample)*255)
         sample = sample.astype(np.uint8)
-        #sample = Image.fromarray(sample)
-        #sample=sample.convert("L")
         plt.imsave(os.path.join(os.path.join(out_path, 'recon'), "{}.png".format(i)),sample, cmap="gray")
         i = i+1

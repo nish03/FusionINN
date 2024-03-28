@@ -1,4 +1,4 @@
-# FusionINN: Invertible Image Fusion for Brain Tumor Monitoring
+# FusionINN
 This repository provides the source code for the [paper](https://arxiv.org/abs/2403.15769) titled **FusionINN: Invertible Image Fusion for Brain Tumor Monitoring**. 
 
 ![GitHub Logo](/assets/Method.png)
