@@ -40,6 +40,7 @@ If you find this code or paper useful in your research, please consider citing o
 # Installation
 
 ## Package Requirements
+
 ```
 pip install -r requirements.txt
 ```
@@ -52,11 +53,13 @@ The processed data consists of roughly 10000 image pairs, which we shuffled and 
 
 # Training FusionINN framework
 **Step 1:** Download the FusionINN source code and make sure you are inside the project folder by running
+
 ```
 cd /path/to/FusionINN-main/FusionINN 
 ```
 
 **Step 2:** Prior to initiating the training process, please ensure to update the folder path in ```inn_train.py``` where the dataset is located. Additionally, confirm that you have allocated at least one GPU for the training. Subsequently, execute the following command:
+
 ```
 python inn_train.py  
 ```
@@ -64,11 +67,13 @@ The trained model will be saved as ```inn.pt``` at ```/path/to/FusionINN-main/Fu
 
 # Training other Fusion Models
 **Step 1:** Make sure you are inside the correct project folder. For example: the path for the DeepFuse model will be as follows:
+
 ```
 cd /path/to/FusionINN-main/FusionModels/DeepFuse 
 ```
 
 **Step 2:** Similar to FusionINN model, make sure you change the folder path where the dataset is placed in ```deepfuse_train.py```, before you start the training process. Then, run the following command:
+
 ```
 python deepfuse_train.py  
 ```
@@ -77,6 +82,7 @@ The trained model will be saved as ```deepfuse.pt``` at ```/path/to/FusionINN-ma
 
 # Inference procedure
 Ensure that the folder paths are correct in the file ```inn_test.py```. The inference procedure remains consistent regardless of whether you utilize pre-trained models or train the models using the aforementioned procedure. For example, to test the FusionINN model, use the following command:
+
 ```
 cd /path/to/FusionINN-main/FusionINN 
 python inn_test.py
@@ -94,11 +100,13 @@ If you prefer to utilize the pre-trained FusionINN model instead of training a n
 
 **Step 2:** Place the downloaded ```inn.pt``` file in the exact same folder where the trained model gets saved for the training procedure i.e. ```/path/to/FusionINN-main/FusionINN/```. 
 
+**Step 3:** Run the Inference procedure.
+
 
 # Using Pre-trained DDFM Model
 Please note that you need to directly use a pre-trained Diffusion model to run [DDFM](https://github.com/Zhaozixiang1228/MMIF-DDFM) approach as this method is not adaptable for training from scratch. Hence, to test DDFM approach, please follow the below steps:
 
-**Step 1:** You need to download the pre-trained model named ```256x256_diffusion_uncond.pt``` from [here](https://github.com/openai/guided-diffusion) and place it in ```/path/to/FusionINN-main/FusionModels/DDFM/output/``` folder. 
+**Step 1:** You need to download the pre-trained model named ```256x256_diffusion_uncond.pt``` from [here](https://github.com/openai/guided-diffusion) and place it in ```/path/to/FusionINN-main/FusionModels/DDFM/models/``` folder. 
 
 **Step 2:** Run the following command:
 
@@ -124,7 +132,7 @@ python inn_vis.py
 
 **Note:** Please modify the visualize procedure according to the model you want to test. Please note that other models will not require folders for decomposed images. 
 
-# Computing Quantitative Results
+# Evaluating Quantitative Performance
 
 **Step 1:** To compute the SSIM metric scores, run the following command:
 
@@ -142,6 +150,7 @@ cd /path/to/FusionINN-main/
 python mean_test.py
 ```
 
+We thank [this](https://github.com/zhengliu6699/imageFusionMetrics) repository for providing the MATLAB code for the fusion metrics other than SSIM function. 
 
 # License
 This software is licensed under the MIT license. 

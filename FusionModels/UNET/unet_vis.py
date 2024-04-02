@@ -17,12 +17,12 @@ total_val_images = 1153
 fused_images = torch.load('val_fused_tensor.pt')
 fused_images = fused_images.cpu().squeeze()
 
-input_images = torch.load('/home/h1/s8993054/INN_Fusion/INN/val_data_tensor.pt')
+input_images = torch.load('/....../FusionINN/val_data_tensor.pt')
 input_images = input_images.cpu().squeeze()
 
 
 for i in range(total_val_images):
-    plt.imsave('/home/h1/s8993054/INN_Fusion/UNET/Fused_normalized/fused_' + str(i) + '.png', fused_images[i,], cmap = 'gray', vmin = 0.0, vmax = 1.0)
+    plt.imsave('/......../UNET/Fused/fused_' + str(i) + '.png', fused_images[i,], cmap = 'gray', vmin = 0.0, vmax = 1.0)
     plt.close()
        
 ############################################Plot the Loss curves#######################################################
@@ -37,7 +37,7 @@ plt.plot(ep_ssim_val_loss_t1ce, label = 'Fusion - ssim-val-t1ce')
 plt.plot(ep_ssim_train_loss_flair, label = 'Fusion - ssim-train-flair')
 plt.plot(ep_ssim_val_loss_flair, label = 'Fusion - ssim-val-flair')
 plt.legend()
-plt.savefig('/home/h1/s8993054/INN_Fusion/UNET/loss_fusion_ssim.png', dpi = 200)
+plt.savefig('/......../UNET/loss_fusion_ssim.png', dpi = 200)
 plt.close()
 
 

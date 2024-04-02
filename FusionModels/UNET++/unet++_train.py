@@ -12,11 +12,11 @@ device = 'cuda' if torch.cuda.is_available() else 'cpu'
 
 #############################################################################################################
 #load train and validation data
-hf = h5py.File("/projects/p084/p_discoret/Brats2018_training_data_sep_channels_train_val_mix.h5", 'r')
+hf = h5py.File("/......../train_data.h5", 'r')
 train_data = hf['data'][()]  # `data` is now an ndarray
 hf.close()
 
-hf = h5py.File("/projects/p084/p_discoret/Brats2018_validation_data_sep_channels_train_val_mix.h5", 'r')
+hf = h5py.File("/......../test_data.h5", 'r')
 val_data = hf['data'][()]  # `data` is now an ndarray
 hf.close()
 
@@ -153,7 +153,6 @@ l2_loss = torch.nn.MSELoss()
 #Optimizer, scheduler, DataParallel, checkpoint loads etc
 optimizer = torch.optim.Adam(model.parameters(), lr=0.0003)
 scheduler=ReduceLROnPlateau(optimizer,mode='min',factor=0.95,patience=8,verbose=True)
-#state_dict=torch.load('rev_inn_model_l2.pt',map_location='cuda')['model_state_dict']
 
 ##############################################################################################################
 #initialize lists for different loss functions

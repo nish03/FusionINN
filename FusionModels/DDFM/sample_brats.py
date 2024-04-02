@@ -76,7 +76,7 @@ if __name__ == '__main__':
     i=0
     total_val_images = 1153
     # load validation data
-    hf = h5py.File("/projects/p084/p_discoret/Brats2018_validation_data_sep_channels_train_val_mix.h5", 'r')
+    hf = h5py.File("/....../test_data.h5", 'r')
     val_data = hf['data'][()]  # `data` is now an ndarray
     hf.close()
     m = torch.nn.ZeroPad2d(8)

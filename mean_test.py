@@ -11,8 +11,8 @@ from scipy.io import savemat
 #############################################################################################
 #FusionINN
 #############################################################################################
-Q_INN    = sio.loadmat('/home/h1/s8993054/INN_Fusion/INN/Q.mat')['Q']
-ssim_INN = sio.loadmat('/home/h1/s8993054/INN_Fusion/INN/ssim.mat')['ssim']
+Q_INN    = sio.loadmat('/......./FusionINN/Q.mat')['Q']
+ssim_INN = sio.loadmat('/......./FusionINN/ssim.mat')['ssim']
 
 Q_INN = np.mean(Q_INN, axis = 0)
 ssim_INN = np.mean(ssim_INN) 
@@ -26,8 +26,8 @@ print('INN Structural Similarity Index (SSIM):', ssim_INN)
 #############################################################################################
 #DDFM
 #############################################################################################
-Q_DDFM    = sio.loadmat('/home/h1/s8993054/INN_Fusion/DDFM/Q.mat')['Q']
-ssim_DDFM = sio.loadmat('/home/h1/s8993054/INN_Fusion/DDFM/ssim.mat')['ssim']
+Q_DDFM    = sio.loadmat('/......./DDFM/Q.mat')['Q']
+ssim_DDFM = sio.loadmat('/......./DDFM/ssim.mat')['ssim']
 
 Q_DDFM = np.mean(Q_DDFM, axis = 0)
 ssim_DDFM = np.mean(ssim_DDFM) 
@@ -41,8 +41,8 @@ print('DDFM Structural Similarity Index (SSIM):', ssim_DDFM)
 #############################################################################################
 #DeepFuse
 #############################################################################################
-Q_DeepFuse    = sio.loadmat('/home/h1/s8993054/INN_Fusion/DeepFuse/Q.mat')['Q']
-ssim_DeepFuse = sio.loadmat('/home/h1/s8993054/INN_Fusion/DeepFuse/ssim.mat')['ssim']
+Q_DeepFuse    = sio.loadmat('/......./DeepFuse/Q.mat')['Q']
+ssim_DeepFuse = sio.loadmat('/......./DeepFuse/ssim.mat')['ssim']
 
 Q_DeepFuse = np.mean(Q_DeepFuse, axis = 0)
 ssim_DeepFuse = np.mean(ssim_DeepFuse) 
@@ -56,8 +56,8 @@ print('DeepFuse Structural Similarity Index (SSIM):', ssim_DeepFuse)
 #############################################################################################
 #FunFuseAn
 #############################################################################################
-Q_FunFuseAn    = sio.loadmat('/home/h1/s8993054/INN_Fusion/FunFuseAn/Q.mat')['Q']
-ssim_FunFuseAn = sio.loadmat('/home/h1/s8993054/INN_Fusion/FunFuseAn/ssim.mat')['ssim']
+Q_FunFuseAn    = sio.loadmat('/......./FunFuseAn/Q.mat')['Q']
+ssim_FunFuseAn = sio.loadmat('/......./FunFuseAn/ssim.mat')['ssim']
 
 Q_FunFuseAn = np.mean(Q_FunFuseAn, axis = 0)
 ssim_FunFuseAn = np.mean(ssim_FunFuseAn) 
@@ -71,8 +71,8 @@ print('FunFuseAn Structural Similarity Index (SSIM):', ssim_FunFuseAn)
 ############################################################################################
 #Half_UNET
 ############################################################################################
-Q_Half_UNET    = sio.loadmat('/home/h1/s8993054/INN_Fusion/Half_UNET/Q.mat')['Q']
-ssim_Half_UNET = sio.loadmat('/home/h1/s8993054/INN_Fusion/Half_UNET/ssim.mat')['ssim']
+Q_Half_UNET    = sio.loadmat('/......./Half_UNET/Q.mat')['Q']
+ssim_Half_UNET = sio.loadmat('/......./Half_UNET/ssim.mat')['ssim']
 
 Q_Half_UNET = np.mean(Q_Half_UNET, axis = 0)
 ssim_Half_UNET = np.mean(ssim_Half_UNET) 
@@ -86,8 +86,8 @@ print('Half_UNET Structural Similarity Index (SSIM):', ssim_Half_UNET)
 ############################################################################################
 #UNET
 ############################################################################################
-Q_UNET    = sio.loadmat('/home/h1/s8993054/INN_Fusion/UNET/Q.mat')['Q']
-ssim_UNET = sio.loadmat('/home/h1/s8993054/INN_Fusion/UNET/ssim.mat')['ssim']
+Q_UNET    = sio.loadmat('/......./UNET/Q.mat')['Q']
+ssim_UNET = sio.loadmat('/......./UNET/ssim.mat')['ssim']
 
 Q_UNET = np.mean(Q_UNET, axis = 0)
 ssim_UNET = np.mean(ssim_UNET) 
@@ -101,8 +101,8 @@ print('UNET Structural Similarity Index (SSIM):', ssim_UNET)
 ############################################################################################
 #UNET++
 ############################################################################################
-Q_UNET_plus_plus    = sio.loadmat('/home/h1/s8993054/INN_Fusion/UNET++/Q.mat')['Q']
-ssim_UNET_plus_plus = sio.loadmat('/home/h1/s8993054/INN_Fusion/UNET++/ssim.mat')['ssim']
+Q_UNET_plus_plus    = sio.loadmat('/......./UNET++/Q.mat')['Q']
+ssim_UNET_plus_plus = sio.loadmat('/......./UNET++/ssim.mat')['ssim']
 
 Q_UNET_plus_plus = np.mean(Q_UNET_plus_plus, axis = 0)
 ssim_UNET_plus_plus = np.mean(ssim_UNET_plus_plus) 
@@ -116,8 +116,8 @@ print('UNET++ Structural Similarity Index (SSIM):', ssim_UNET_plus_plus)
 ###########################################################################################
 #UNET3+
 ###########################################################################################
-Q_UNET_three_plus    = sio.loadmat('/home/h1/s8993054/INN_Fusion/UNET3+/Q.mat')['Q']
-ssim_UNET_three_plus = sio.loadmat('/home/h1/s8993054/INN_Fusion/UNET3+/ssim.mat')['ssim']
+Q_UNET_three_plus    = sio.loadmat('/......./UNET3+/Q.mat')['Q']
+ssim_UNET_three_plus = sio.loadmat('/......./UNET3+/ssim.mat')['ssim']
 
 Q_UNET_three_plus = np.mean(Q_UNET_three_plus, axis = 0)
 ssim_UNET_three_plus = np.mean(ssim_UNET_three_plus) 

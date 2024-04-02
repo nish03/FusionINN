@@ -12,11 +12,11 @@ from torch.optim.lr_scheduler import ReduceLROnPlateau,StepLR
 
 #############################################################################################################
 #load train and validation data
-hf = h5py.File("/projects/p084/p_discoret/Brats2018_training_data_sep_channels_train_val_mix.h5", 'r')
+hf = h5py.File("/....../train_data.h5", 'r')
 train_data = hf['data'][()]  # `data` is now an ndarray
 hf.close()
 
-hf = h5py.File("/projects/p084/p_discoret/Brats2018_validation_data_sep_channels_train_val_mix.h5", 'r')
+hf = h5py.File("/....../test_data.h5", 'r')
 val_data = hf['data'][()]  # `data` is now an ndarray
 hf.close()
 
@@ -39,7 +39,7 @@ val_data_tensor = torch.from_numpy(val_data).float()
 #metaparameters
 total_train_images = 8500
 total_val_images = 1153
-EPOCHS = 200
+EPOCHS = 400
 batch_size = 64
 gpu_ids = [0,1]
 lamda_ssim = 0.5
@@ -91,6 +91,7 @@ print(model)
 
 ###############################################################################################################
 #Definitions of the loss functions
+
 #MMDLoss(Code:https://github.com/vislearn/analyzing_inverse_problems/blob/master/toy_8-modes/toy_8-modes.ipynb)
 def MMD_multiscale(x, y):
     xx, yy, zz = torch.mm(x,x.t()), torch.mm(y,y.t()), torch.mm(x,y.t())
@@ -108,19 +109,18 @@ def MMD_multiscale(x, y):
         XY += a**2 * (a**2 + dxy)**-1
     return torch.mean(XX + YY - 2.*XY)
 
-     
+#Squared L2 Loss   
 l2_loss = torch.nn.MSELoss()
 
 ##############################################################################################################
 #Optimizer, scheduler, DataParallel, checkpoint loads etc
 optimizer = torch.optim.Adam(model.parameters(), lr=0.0003)
 scheduler=ReduceLROnPlateau(optimizer,mode='min',factor=0.95,patience=8,verbose=True)
-state_dict=torch.load('/home/h1/s8993054/INN_Fusion/INN/Old_models/inn_400.pt',map_location='cuda')['model_state_dict']
+#state_dict=torch.load('/....../inn.pt',map_location='cuda')['model_state_dict']
 
 model = model.float()
-model = model.cuda() #all 8 GPUs will be used
-
-model.load_state_dict(state_dict)
+model = model.cuda() 
+#model.load_state_dict(state_dict)
 
 ##############################################################################################################
 #initialize lists for different loss functions
@@ -425,9 +425,10 @@ for epoch in range(EPOCHS):
     
     av_latent_val_loss = np.average(loss_latent_val)
     ep_latent_val_loss.append(av_latent_val_loss)
+    
 #########################################################################################################################
 #print the loss values
-    print("Epoch: {}/200 LR:{} Train_loss:{} Val_loss:{} Train_SSIM_combined_loss:{} Val_SSIM_combined_loss:{} Train_Rev_SSIM_combined_loss:{}  Val_Rev_SSIM_combined_loss:{} Train_Latent_loss:{} Val_Latent_loss:{}"
+    print("Epoch: {}/400 LR:{} Train_loss:{} Val_loss:{} Train_SSIM_combined_loss:{} Val_SSIM_combined_loss:{} Train_Rev_SSIM_combined_loss:{}  Val_Rev_SSIM_combined_loss:{} Train_Latent_loss:{} Val_Latent_loss:{}"
     .format(epoch + 1,optimizer.param_groups[0]['lr'], ep_train_loss[-1], ep_val_loss[-1], ep_ssim_train_loss_combined[-1], ep_ssim_val_loss_combined[-1],
                 ep_ssim_rev_train_loss_combined[-1],  ep_ssim_rev_val_loss_combined[-1], ep_latent_train_loss[-1], ep_latent_val_loss[-1]))
     torch.save(
@@ -463,7 +464,7 @@ for epoch in range(EPOCHS):
         "validation_loss_l2_rev_combined":ep_l2_rev_val_loss_combined,
         "training_loss_latent":ep_latent_train_loss,
         "validation_loss_latent": ep_latent_val_loss
-    }, 'inn_600.pt')
+    }, 'inn.pt')
 
 
 

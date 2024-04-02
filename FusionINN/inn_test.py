@@ -60,12 +60,12 @@ print(model)
 ##############################################################################################################
 def Load_Data():
     # loading train data
-    hf = h5py.File("/projects/p084/p_discoret/Brats2018_training_data_sep_channels_train_val_mix.h5", 'r')
+    hf = h5py.File("/....../train_data.h5", 'r')
     train_data = hf['data'][()]  # `data` is now an ndarray
     hf.close()
 
     # loading val data
-    hf = h5py.File("/projects/p084/p_discoret/Brats2018_validation_data_sep_channels_train_val_mix.h5", 'r')
+    hf = h5py.File("/....../test_data.h5", 'r')
     val_data = hf['data'][()]  # `data` is now an ndarray
     hf.close()
 
@@ -95,12 +95,12 @@ def Normalize_Data(train_data, val_data):
 ###############################################################################################################
 train_data, val_data = Load_Data()
 train_data_tensor, val_data_tensor = Normalize_Data(train_data, val_data)
-#torch.save(val_data_tensor, 'val_data_tensor.pt')
+torch.save(val_data_tensor, 'val_data_tensor.pt')
 
 # load pretrain model
-if os.path.exists('/home/h1/s8993054/INN_Fusion/INN/Old_models/inn.pt'):
+if os.path.exists('/....../inn.pt'):
     print('using pretrained model')
-    state_dict = torch.load('/home/h1/s8993054/INN_Fusion/INN/Old_models/inn.pt',map_location='cuda')['model_state_dict']
+    state_dict = torch.load('/....../inn.pt',map_location='cuda')['model_state_dict']
     model.load_state_dict(state_dict)
 model.to(device)
 model = model.float()

@@ -250,12 +250,12 @@ model=torch.nn.DataParallel(model, gpu_ids)
 ##############################################################################################################
 def Load_Data():
     # loading train data
-    hf = h5py.File("/projects/p084/p_discoret/Brats2018_training_data_sep_channels_train_val_mix.h5", 'r')
+    hf = h5py.File("/......../train_data.h5", 'r')
     train_data = hf['data'][()]  # `data` is now an ndarray
     hf.close()
 
     # loading val data
-    hf = h5py.File("/projects/p084/p_discoret/Brats2018_validation_data_sep_channels_train_val_mix.h5", 'r')
+    hf = h5py.File("/......../test_data.h5", 'r')
     val_data = hf['data'][()]  # `data` is now an ndarray
     hf.close()
 
