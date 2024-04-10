@@ -18,10 +18,13 @@ This repository provides the source code for the paper titled [FusionINN: Invert
 * [Installation](#installation)
   * [Package Requirements](#package-requirements)
   * [Datasets](#datasets)
-* [Training FFS from scratch](#training-ffs-from-scratch)
-* [Using Pre-trained FFS Models](#using-pre-trained-ffs-models)
+* [Training FusionINN framework](#training-fusioninn-framework)
+* [Training other Fusion Models Models](#training-other-fusion-models)
 * [Inference procedure](#inference-procedure)
-* [Visualization of results](#visualization-of-results)
+* [Using Pre-trained FusionINN Model](#using-pre-trained-fusioninn-model)
+* [Using Pre-trained DDFM Model](#using-pre-trained-ddfm-model)
+* [Visualization of FusionINN results](#visualization-of-fusioninn-results)
+* [Evaluating Quantitative Performance](#evaluating-quantitative-performance)
 * [License](#license)
 
 # How to Cite
