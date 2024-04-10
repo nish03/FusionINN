@@ -19,7 +19,7 @@ This repository provides the source code for the paper titled [FusionINN: Invert
   * [Package Requirements](#package-requirements)
   * [Datasets](#datasets)
 * [Training FusionINN framework](#training-fusioninn-framework)
-* [Training other Fusion Models Models](#training-other-fusion-models)
+* [Training other Fusion Models](#training-other-fusion-models)
 * [Inference procedure](#inference-procedure)
 * [Using Pre-trained FusionINN Model](#using-pre-trained-fusioninn-model)
 * [Using Pre-trained DDFM Model](#using-pre-trained-ddfm-model)
