@@ -80,7 +80,7 @@ cd /path/to/FusionINN-main/FusionModels/DeepFuse
 ```
 python deepfuse_train.py  
 ```
-The trained model will be saved as ```deepfuse.pt``` at ```/path/to/FusionINN-main/FusionModels/DeepFuse/deepfuse.pt```. Please follow the same proedure for other fusion models.
+The trained model will be saved as ```deepfuse.pt``` at ```/path/to/FusionINN-main/FusionModels/DeepFuse/deepfuse.pt```. Please follow the same procedure for other fusion models.
 
 
 # Inference procedure
@@ -124,7 +124,7 @@ The above steps will save the fused images obtained from DDFM model in the follo
 # Visualization of FusionINN results
 To visualize the fusion and decomposition performance of FusionINN model, please follow the below steps: 
 
-**Step 1:** Create five new folders two for input images (named ```T1ce``` and ```Flair```), one for fused images (named ```Fused```) and two for decomposed images (named ```Recon_T1ce``` and ```Recon_Flair```) in the model folder ```/path/to/FusionINN-main/FusionINN```. 
+**Step 1:** Create five new folders, two for input images (named ```T1ce``` and ```Flair```), one for fused images (named ```Fused```) and two for decomposed images (named ```Recon_T1ce``` and ```Recon_Flair```) in the model folder ```/path/to/FusionINN-main/FusionINN```. 
 
 **Step 2:** Subseqently, run the following command: 
 
@@ -144,7 +144,7 @@ cd /path/to/FusionINN-main/
 python ssim_test.py
 ```
 
-**Step 2:** Please make sure you have MATLAB installed in your workspace. Enter the MATLAB environment and add all folders and the subfolders of FusionINN project to search path of your MATLAB ennvironment. Next, running the ```evaluate.m``` file available at ```/path/to/FusionINN-main/``` will save a MATLAB file ```Q.mat``` in the same folder path. The ```Q.mat``` file will contain scores obtained from four other fusion metrics for an evaluated fusion model.
+**Step 2:** Please make sure you have MATLAB installed in your workspace. Enter the MATLAB environment and add all folders and the subfolders of FusionINN project to search path of your MATLAB environment. Next, running the ```evaluate.m``` file available at ```/path/to/FusionINN-main/``` will save a MATLAB file ```Q.mat``` in the same folder path. The ```Q.mat``` file will contain scores obtained from four other fusion metrics for an evaluated fusion model.
 
 **Step 3:** Finally run the following command to obtain average values of all the five fusion metrics for all the evaluated models on the test image set:
 
