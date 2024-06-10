@@ -1,5 +1,5 @@
 # FusionINN
-This repository provides the source code for the paper titled [FusionINN: Invertible Image Fusion for Brain Tumor Monitoring](https://arxiv.org/abs/2403.15769). 
+This repository provides the source code for the paper titled [FusionINN: Invertible Image Fusion for Brain Tumor Monitoring](https://arxiv.org/abs/2403.15769) by Nishant Kumar, Ziyan Tao, Jaikirat Singh, Yang Li, Peiwen Sun, Binghui Zhao and Stefan Gumhold. 
 
 ![GitHub Logo](/assets/Method.png)
 
@@ -8,6 +8,9 @@ This repository provides the source code for the paper titled [FusionINN: Invert
 * The framework not only generates a fused image but can also decompose it into constituent source images, thus enhancing the interpretability for clinical practitioners. 
 * Conducts evaluation studies that shows state-of-the-art results with standard fusion metrics, alongside its additional capability to decompose the fused images.
 * Illustrates the framework's clinical viability by effectively decomposing and fusing new images from source modalities not encountered during training. 
+
+# News
+* The paper got accepted at [IJCAI Workshop 2024](https://sites.google.com/view/tai4h2024/). 
 
 # Advertisement
 * Check out our AAAI 2024 work [QuantOD](https://github.com/taghikhah/QuantOD) on Outlier-aware Image Classification.
