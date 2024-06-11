@@ -1,5 +1,5 @@
 # FusionINN
-This repository provides the source code for the paper titled [FusionINN: Invertible Image Fusion for Brain Tumor Monitoring](https://arxiv.org/abs/2403.15769) by Nishant Kumar, Ziyan Tao, Jaikirat Singh, Yang Li, Peiwen Sun, Binghui Zhao and Stefan Gumhold. 
+This repository provides the source code for the paper titled [FusionINN: Decomposable Image Fusion for Brain Tumor Monitoring](https://arxiv.org/abs/2403.15769) by Nishant Kumar, Ziyan Tao, Jaikirat Singh, Yang Li, Peiwen Sun, Binghui Zhao and Stefan Gumhold. 
 
 ![GitHub Logo](/assets/Method.png)
 
